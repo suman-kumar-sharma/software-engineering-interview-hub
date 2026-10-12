@@ -30,12 +30,17 @@ system-design/
 | Bottlenecks, edge cases, trade-offs | 10 | 7 |
 | Recap and questions | 5 | 3 |
 
+## Comprehensive additions
+- [Interview scoring rubric and practice checklist](interview-framework/comprehensive-interview-rubric.md)
+- [HLD: Distributed rate limiter](hld/rate-limiter.md)
+- [LLD: Thread-safe LRU cache (Java 17)](lld/lru-cache.md)
+
 ## Study order
 1. [HLD interview playbook](interview-framework/hld-interview-playbook.md)
 2. [HLD worked example: URL shortener](hld/url-shortener.md)
 3. [LLD interview playbook](interview-framework/lld-interview-playbook.md)
 4. [LLD worked example: parking lot](lld/parking-lot.md)
-5. Reuse the [HLD template](templates/hld-template.md) and [LLD template](templates/lld-template.md).
+7. Reuse the [HLD template](templates/hld-template.md) and [LLD template](templates/lld-template.md).
 
 ## Future case-study backlog
 
