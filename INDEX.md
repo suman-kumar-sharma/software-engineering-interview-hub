@@ -1,10 +1,8 @@
 # Interview Preparation Index
 
-## Reports awaiting upload
-- 2026-10-11 — `Interview_Preparation_2026-10-11.md`
-- 2026-10-12 — `Interview_Preparation_2026-10-12.md`
+## Published reports
 
-The daily report files have been generated in ChatGPT, but have **not yet been committed to this repository**.
+- [2026-10-12 — Interview Preparation](daily/2026/10/Interview_Preparation_2026-10-12.md)
+- [2026-10-11 — Interview Preparation](daily/2026/10/Interview_Preparation_2026-10-11.md)
 
-## Intended layout
-`daily/YYYY/MM/Interview_Preparation_YYYY-MM-DD.md`
+Reports are organized under `daily/YYYY/MM/`.
