@@ -37,6 +37,14 @@ instructions = (
     "saved posts. If few posts can be verified, say so instead of fabricating questions. "
     "Prefer substantive accuracy over quantity. Avoid previously covered questions where possible. "
     f"Recent report filenames: {', '.join(recent_names)}. "
+    "Include TWO clearly marked sections every day: (1) HLD interview design practice, "
+    "and (2) LLD interview design practice. For each, give a realistic interview prompt, "
+    "clarifying questions, assumptions, a timed step-by-step answer strategy, architecture "
+    "or class model, main request/state flow, trade-offs, bottlenecks, failure handling, "
+    "follow-up questions, and a concise sample spoken interview answer. HLD must cover "
+    "capacity estimates and API/data design; LLD must cover Java-oriented classes, "
+    "SOLID, core code or pseudocode, concurrency, and tests. Prefer rotating distinct "
+    "problems daily. Reference the repo system-design/ playbooks for consistent structure. "
     "Return ONLY Markdown content, no code fence."
 )
 payload = json.dumps({
