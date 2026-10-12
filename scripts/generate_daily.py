@@ -93,9 +93,52 @@ if len(report) < 800:
     sys.exit("Research response was empty or too short; refusing to publish.")
 destination.parent.mkdir(parents=True, exist_ok=True)
 destination.write_text(report + "\n", encoding="utf-8")
+# Create a standalone Hinglish learning companion without changing the English original.
+hinglish_relative = pathlib.Path("daily") / "hinglish" / str(today.year) / f"{today.month:02d}" / f"Interview_Preparation_{today.isoformat()}.md"
+hinglish_destination = ROOT / hinglish_relative
+hinglish_prompt = (
+    "Rewrite the following interview-preparation report as a COMPLETE Roman-script "
+    "Hinglish teaching companion. Retain every substantive question, source URL, "
+    "Java code sample, HLD/LLD scenario, technical solution, complexity, edge cases "
+    "and product-company interview focus. Explain concepts and reasoning step by step "
+    "in natural Hindi-English mix. Include intuition, dry runs, why the solution works, "
+    "mistakes, trade-offs, and how to answer the interviewer professionally in English. "
+    "For HLD and LLD include full interview-stage walkthroughs, diagrams, alternatives, "
+    "failure scenarios, tests and spoken English answer. Never invent citations or "
+    "attribute questions to a company without evidence. Return only Markdown. "
+    "English source report follows:\\n\\n" + report
+)
+hinglish_payload = json.dumps({
+    "model": "gpt-5.1",
+    "input": hinglish_prompt,
+    "max_output_tokens": 16000
+}).encode()
+hinglish_request = urllib.request.Request(
+    "https://api.openai.com/v1/responses",
+    data=hinglish_payload,
+    headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+    method="POST"
+)
+try:
+    with urllib.request.urlopen(hinglish_request, timeout=300) as response:
+        hinglish_result = json.load(response)
+except urllib.error.HTTPError as exc:
+    sys.exit(f"Hinglish generation failed: HTTP {exc.code}: {exc.read(1500).decode(errors='replace')}")
+hinglish_parts = []
+for item in hinglish_result.get("output", []):
+    if item.get("type") == "message":
+        for block in item.get("content", []):
+            if block.get("type") == "output_text":
+                hinglish_parts.append(block.get("text", ""))
+hinglish_report = "\\n".join(hinglish_parts).strip()
+if len(hinglish_report) < 800:
+    sys.exit("Hinglish output incomplete; refusing to publish.")
+hinglish_destination.parent.mkdir(parents=True, exist_ok=True)
+hinglish_destination.write_text(hinglish_report + "\\n", encoding="utf-8")
 index = ROOT / "INDEX.md"
 lines = ["# Interview Preparation Index", "", "## Published reports", ""]
 for path in sorted([*existing, destination], reverse=True):
-    lines.append(f"- [{path.stem}]({path.relative_to(ROOT).as_posix()})")
+    companion = pathlib.Path("daily") / "hinglish" / path.relative_to(ROOT / "daily")
+    lines.append(f"- [{path.stem}]({path.relative_to(ROOT).as_posix()}) · [Hinglish]({companion.as_posix()})")
 index.write_text("\n".join(lines) + "\n", encoding="utf-8")
 print(f"Created {relative}")
