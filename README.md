@@ -11,6 +11,15 @@ Java · Spring Boot · Kafka · Concurrency · AWS · Databases · System Design
 
 See [INDEX.md](INDEX.md) for the full report index.
 
+## System design interview practice
+
+New: [System Design Interview Playbook](system-design/README.md) with:
+- [HLD answer framework](system-design/interview-framework/hld-interview-playbook.md) and [URL shortener example](system-design/hld/url-shortener.md).
+- [LLD answer framework](system-design/interview-framework/lld-interview-playbook.md) and [Java parking lot example](system-design/lld/parking-lot.md).
+- Reusable HLD and LLD templates.
+
+The daily report generator is now instructed to include **one HLD and one LLD walkthrough**. This applies to future runs, not already published historical reports.
+
 ## Automatic daily publishing
 A [GitHub Actions workflow](.github/workflows/daily-interview.yml) is scheduled for **08:00 IST** daily and can also be run manually. To enable it, add an `OPENAI_API_KEY` GitHub Actions repository secret in **Settings → Secrets and variables → Actions**. API usage is billed separately. The workflow has not yet been tested successfully.
 
