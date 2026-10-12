@@ -2,6 +2,13 @@
 
 Daily source-linked interview preparation and software engineering updates.
 
+## Hinglish learning tracks
+
+- [Daily interview explanations in Hinglish](daily/hinglish/README.md)
+- [System Design HLD/LLD in Hinglish](system-design/hinglish/README.md)
+
+English remains the primary technical reference; Hinglish companions explain intuition, reasoning, and how to communicate answers in interviews. Future daily reports are configured to generate both languages (subject to successful workflow runs).
+
 ## Published reports
 - [October 12, 2026](daily/2026/10/Interview_Preparation_2026-10-12.md)
 - [October 11, 2026](daily/2026/10/Interview_Preparation_2026-10-11.md)
