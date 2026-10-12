@@ -44,7 +44,16 @@ instructions = (
     "follow-up questions, and a concise sample spoken interview answer. HLD must cover "
     "capacity estimates and API/data design; LLD must cover Java-oriented classes, "
     "SOLID, core code or pseudocode, concurrency, and tests. Prefer rotating distinct "
-    "problems daily. Reference the repo system-design/ playbooks for consistent structure. "
+    "problems daily. Make BOTH walkthroughs comprehensive and interview-ready: target roughly "
+    "1500-2500 words per design when output budget allows; include requirements and explicit "
+    "assumptions, a timed interview script with what to say at each stage, alternatives and "
+    "why rejected, diagrams in Mermaid or ASCII, correctness invariants, failure scenarios, "
+    "security, monitoring, test plan, and a 60-90 second recap. For LLD include runnable "
+    "Java 17+ code when feasible, class relationships, APIs, time/space complexity and "
+    "concurrency boundaries; for HLD include transparent capacity math, data indexes, "
+    "consistency semantics, and operational trade-offs. If token budget is limited, "
+    "prioritize depth and correctness over adding many shallow topics. "
+    "Reference the repo system-design/ playbooks for consistent structure. "
     "Return ONLY Markdown content, no code fence."
 )
 payload = json.dumps({
