@@ -106,7 +106,7 @@ hinglish_prompt = (
     "For HLD and LLD include full interview-stage walkthroughs, diagrams, alternatives, "
     "failure scenarios, tests and spoken English answer. Never invent citations or "
     "attribute questions to a company without evidence. Return only Markdown. "
-    "English source report follows:\\n\\n" + report
+    "English source report follows:\n\n" + report
 )
 hinglish_payload = json.dumps({
     "model": "gpt-5.1",
@@ -130,11 +130,11 @@ for item in hinglish_result.get("output", []):
         for block in item.get("content", []):
             if block.get("type") == "output_text":
                 hinglish_parts.append(block.get("text", ""))
-hinglish_report = "\\n".join(hinglish_parts).strip()
+hinglish_report = "\n".join(hinglish_parts).strip()
 if len(hinglish_report) < 800:
     sys.exit("Hinglish output incomplete; refusing to publish.")
 hinglish_destination.parent.mkdir(parents=True, exist_ok=True)
-hinglish_destination.write_text(hinglish_report + "\\n", encoding="utf-8")
+hinglish_destination.write_text(hinglish_report + "\n", encoding="utf-8")
 index = ROOT / "INDEX.md"
 lines = ["# Interview Preparation Index", "", "## Published reports", ""]
 for path in sorted([*existing, destination], reverse=True):
