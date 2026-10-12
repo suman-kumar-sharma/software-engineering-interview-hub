@@ -19,6 +19,12 @@ system-design/
     └── lld-template.md
 ```
 
+## Interview target: product-based companies (80%+)
+
+At least 80% of new practice material should resemble SDE2/Senior interviews at product-focused engineering organizations. Emphasize scalable systems, design trade-offs, coding correctness, concurrency, testing, and engineering judgment. Use company names only as illustrative interview styles unless a source verifies an actual interview question.
+
+Track coverage by labeling problems **Product-company style** or **General**; report the ratio in daily summaries. Do not sacrifice quality to meet a quota.
+
 ## Suggested interview timing
 
 | Stage | HLD (45 min) | LLD (45 min) |
