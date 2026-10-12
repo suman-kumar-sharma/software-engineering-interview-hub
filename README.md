@@ -2,13 +2,18 @@
 
 Daily source-linked interview preparation and software engineering updates.
 
-## Daily reports
-- [October 11, 2026](daily/2026/10/Interview_Preparation_2026-10-11.md)
-- [October 12, 2026](daily/2026/10/Interview_Preparation_2026-10-12.md)
+## Topics
+Java · Spring Boot · Kafka · Concurrency · AWS · Databases · System Design · DSA · AI Engineering · Security
 
-## Focus
-Java, Spring Boot, Kafka, concurrency, AWS, databases, system design, DSA, AI engineering, and security.
+## Publishing
+A [scheduled GitHub Actions workflow](.github/workflows/daily-interview.yml) is configured to attempt a daily public-source research report at **08:00 IST**. It uses the OpenAI API and **will not work until you add an `OPENAI_API_KEY` repository Actions secret**. API usage may incur separate charges. It does not access your private LinkedIn feed or saved posts.
 
-See [INDEX.md](INDEX.md) for the report catalog.
+1. Open repository **Settings → Secrets and variables → Actions → New repository secret**.
+2. Add secret name `OPENAI_API_KEY` with your own API key (never commit the key).
+3. Open **Actions → Daily interview research → Run workflow** to test.
+4. Confirm a file appears under `daily/YYYY/MM/`.
 
-> Public sources only. The daily research automation does not have access to private LinkedIn feeds or saved posts. Automatic GitHub publishing is not yet configured.
+The workflow uses web research, but public LinkedIn access and interview-question coverage are not guaranteed. Review reports for factual accuracy.
+
+## Historical reports
+The previously generated October 11 and October 12 Markdown files are **not yet uploaded** to this repository. See [INDEX.md](INDEX.md) for actual publication status.
