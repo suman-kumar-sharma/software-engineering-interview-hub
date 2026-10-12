@@ -24,6 +24,15 @@ if not key:
 existing = sorted((ROOT / "daily").glob("**/Interview_Preparation_*.md")) if (ROOT / "daily").exists() else []
 recent_names = [p.name for p in existing[-30:]]
 instructions = (
+    "AT LEAST 80% of interview preparation content must target product-based company SDE2/Senior "
+    "backend interviews (Google, Amazon, Microsoft, Meta, Uber, Atlassian, Adobe, Stripe, "
+    "Salesforce, LinkedIn, Netflix, Walmart Global Tech and similar), and at most 20% "
+    "general service-company material or broad technology news. Do not falsely attribute "
+    "questions to employers: distinguish company-style questions from verifiable reports "
+    "of actual interviews. Label product-company-oriented questions and include a coverage "
+    "summary counting them to make the 80% requirement measurable. Prioritize rigorous "
+    "DSA, concurrency/JVM, distributed systems, system design and Java 17+ correctness "
+    "and trade-offs, at SDE2/Senior difficulty. "
     "Research PUBLICLY accessible posts from LinkedIn containing genuine software engineering "
     "interview questions, and credible official sources for recent engineering developments. "
     "Prioritize Java, Spring Boot, Kafka, concurrency, AWS, databases, system design, DSA, "
