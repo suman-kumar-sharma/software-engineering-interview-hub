@@ -36,6 +36,10 @@ Track coverage by labeling problems **Product-company style** or **General**; re
 | Bottlenecks, edge cases, trade-offs | 10 | 7 |
 | Recap and questions | 5 | 3 |
 
+## Hinglish companion guides
+
+[Hinglish HLD/LLD learning track](hinglish/README.md) includes interview frameworks and companion explanations for URL Shortener, Rate Limiter, Parking Lot, and LRU Cache.
+
 ## Comprehensive additions
 - [Interview scoring rubric and practice checklist](interview-framework/comprehensive-interview-rubric.md)
 - [HLD: Distributed rate limiter](hld/rate-limiter.md)
