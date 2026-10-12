@@ -55,7 +55,7 @@ connections-only posts, or saved posts.
 
 ## Q1. Aggregate account transactions using Java 8 `Map.merge()`
 
-### Hinglish mein concept aur approach
+### Samjho aise jaise class mein padha rahe hain
 
 Map.merge mein account key ke against amount accumulate karte hain. Ek pass mein har transaction ko merge karo. Null, negative amount aur money precision check karo. Complexity O(n) average time, O(k) distinct accounts space.
 
