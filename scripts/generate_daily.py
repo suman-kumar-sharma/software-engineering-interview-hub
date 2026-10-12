@@ -97,6 +97,14 @@ destination.write_text(report + "\n", encoding="utf-8")
 hinglish_relative = pathlib.Path("daily") / "hinglish" / str(today.year) / f"{today.month:02d}" / f"Interview_Preparation_{today.isoformat()}.md"
 hinglish_destination = ROOT / hinglish_relative
 hinglish_prompt = (
+    "Teach the following interview-preparation report in GENUINE CONVERSATIONAL Hinglish, as if "
+    "you are a patient senior engineer teaching a student at a whiteboard. NOT a literal "
+    "translation and NOT English paragraphs with occasional Hindi words. For every question "
+    "start with a relatable real-world situation (Socho/Maan lo/Chalo samajhte hain), "
+    "then derive the solution step by step in natural Roman-script Hindi + English, "
+    "walk through an example, explain code and complexity, highlight interviewer twists "
+    "and finish with a polished professional English interview answer. Keep full technical "
+    "accuracy and complete runnable Java code when the original includes it. "
     "Rewrite the following interview-preparation report as a COMPLETE Roman-script "
     "Hinglish teaching companion. Retain every substantive question, source URL, "
     "Java code sample, HLD/LLD scenario, technical solution, complexity, edge cases "
