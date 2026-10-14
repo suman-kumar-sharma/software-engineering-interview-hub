@@ -1,10 +1,9 @@
 # Interview Preparation Index
 
-## Published reports
-
 | Date | English | Hinglish |
 | --- | --- | --- |
-| 2026-10-12 | [Interview preparation](daily/2026/10/Interview_Preparation_2026-10-12.md) | [Hinglish companion](daily/hinglish/2026/10/Interview_Preparation_2026-10-12.md) |
-| 2026-10-11 | [Interview preparation](daily/2026/10/Interview_Preparation_2026-10-11.md) | [Hinglish companion](daily/hinglish/2026/10/Interview_Preparation_2026-10-11.md) |
+| 2026-10-14 | [English](daily/2026/10/Interview_Preparation_2026-10-14.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-14.md) |
+| 2026-10-12 | [English](daily/2026/10/Interview_Preparation_2026-10-12.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-12.md) |
+| 2026-10-11 | [English](daily/2026/10/Interview_Preparation_2026-10-11.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-11.md) |
 
-The Hinglish companion uses the **same filename** as its English report but lives under `daily/hinglish/`. Historical Hinglish companions preserve original Java code, technical details and source links, with added Hinglish explanations for each question.
+Both editions use the same filename in separate folders. The Hinglish edition explains the concepts like a teacher, with practical examples and step-by-step reasoning.
