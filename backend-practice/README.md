@@ -13,6 +13,7 @@ Topics rotate through concurrency/JMM, virtual threads, CompletableFuture, Kafka
 
 | Date | Topic | Reference |
 |---|---|---|
+| 2026-10-14 | JVM diagnostics: allocation vs retention; bounded LRU cache | [English](english/2026/10/Backend_Practice_2026-10-14.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-14.md) |
 | 2026-10-11 | Safe configuration reloads: immutable snapshots and CAS | [Worked solution with Hinglish explanation](english/2026/10/Backend_Practice_2026-10-11.md) |
 
 Future scheduled sessions are configured to publish English and Hinglish companions through the connected GitHub integration. Publication depends on successful access in each run; a failed push must be reported explicitly.
