@@ -2,6 +2,7 @@
 
 | Date | English | Hinglish |
 | --- | --- | --- |
+| 2026-10-15 | [English](daily/2026/10/Interview_Preparation_2026-10-15.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-15.md) |
 | 2026-10-14 | [English](daily/2026/10/Interview_Preparation_2026-10-14.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-14.md) |
 | 2026-10-12 | [English](daily/2026/10/Interview_Preparation_2026-10-12.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-12.md) |
 | 2026-10-11 | [English](daily/2026/10/Interview_Preparation_2026-10-11.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-11.md) |
