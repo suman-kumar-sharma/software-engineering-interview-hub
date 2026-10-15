@@ -39,3 +39,7 @@ class Aggregator {
 **Interview answer:** “I budget a single end-to-end deadline, isolate downstream concurrency, degrade optional dependencies and enforce client-side timeouts.”
 
 Source: https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/concurrent/CompletableFuture.html
+
+## Q2. PostgreSQL job queue with SKIP LOCKED
+
+Claim jobs in a short transaction using FOR UPDATE SKIP LOCKED. Store a lease deadline and claim generation. After a crash, another worker can reclaim the expired job. External side effects must remain idempotent.
