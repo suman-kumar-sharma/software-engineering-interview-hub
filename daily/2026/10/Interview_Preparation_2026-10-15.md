@@ -43,3 +43,5 @@ Source: https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/c
 ## Q2. PostgreSQL job queue with SKIP LOCKED
 
 Claim jobs in a short transaction using FOR UPDATE SKIP LOCKED. Store a lease deadline and claim generation. After a crash, another worker can reclaim the expired job. External side effects must remain idempotent.
+
+**SQL claim:** `SELECT id FROM jobs WHERE status='READY' FOR UPDATE SKIP LOCKED LIMIT 10` inside a transaction, followed by `UPDATE jobs SET status='RUNNING', lease_until=now()+interval '2 minutes', attempt=attempt+1 WHERE id IN (...)`. Commit immediately. Use `WHERE attempt=:claimedAttempt` for completion. Retries require backoff and maximum attempts; strict exactly-once side effects require durable idempotency, not just a claim lock.
