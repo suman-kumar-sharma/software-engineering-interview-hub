@@ -4,7 +4,7 @@ Product-company SDE2/Senior Java Backend interview practice. Original questions,
 
 ## Contents
 
-Nine original SDE2/Senior questions: CompletableFuture deadlines; PostgreSQL job claims; Kafka rebalances; Spring transaction propagation; Redis fencing; shortest subarray with negatives; RDS restore latency; Java safe publication; refresh-token rotation. Includes one HLD and one LLD. These are original interview-style exercises, not verified employer questions.
+Nine original interview exercises (not employer-attributed). **Continue reading:** [Q3–Q9 deep dives](Interview_Preparation_2026-10-15_Deep_Dive.md), [comprehensive HLD](../../../system-design/daily/2026-10-15-hld-flash-sale-inventory.md), and [Hinglish edition](../../hinglish/2026/10/Interview_Preparation_2026-10-15.md).
 
 ## Q1. CompletableFuture: 250 ms end-to-end deadline (Hard)
 
