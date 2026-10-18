@@ -62,3 +62,52 @@ COMMIT;
 **Fairness:** SKIP LOCKED strict FIFO nahi. High-priority jobs ke flood se low-priority jobs starve ho sakti hain. Aging policy aur oldest-waiting-job metric useful hain.
 
 **English answer:** "SKIP LOCKED enables concurrent queue claiming, but I add leases, fencing and starvation monitoring for reliable execution."
+
+## Q4. DynamoDB conditional write se duplicate order kaise rokoge? (Hard)
+**Socho** customer ne "Place Order" dabaya. Order ban gaya, lekin network response lost. Client ne retry kiya. Agar har retry naya order create kare, customer ko duplicate order mil sakta hai.
+
+**Pehle invariant samjho:** Same tenant + same idempotency key + same request = same logical result. Agar same key par different request body aaye, 409 conflict.
+
+**Approach:** DynamoDB item key `TENANT#tenantId#IDEMP#requestKey`. First request `attribute_not_exists(PK)` condition se claim kare. Doosra request conditional failure dekhega, existing item strongly read karega, request hash compare karega. Status SUCCESS hai toh stored orderId return; IN_PROGRESS hai toh bounded wait/retry-after. Agar order aur idempotency record dono DynamoDB mein hain toh `TransactWriteItems` ke through atomic persistence design karo.
+
+**Twist:** TTL deletion asynchronous hai; exact second par record delete hoga, guarantee nahi. Payment gateway DynamoDB transaction ke andar nahi aata. External charge ke liye gateway idempotency aur unknown-result reconciliation zaroori hai.
+
+**English answer:** "I use a tenant-scoped conditional claim, validate the request fingerprint and persist a stable result for duplicate retries."
+
+## Q5. JWT valid hai phir bhi tenant B ka data leak ho gaya! (Hard)
+**Maan lo** SaaS platform mein tenant A aur B hain. A ka user authenticated hai. Usne URL mein tenant ID B kar diya aur B ka order mil gaya. JWT valid hone ke bawajood security breach kaise?
+
+**Root cause:** Authentication ka matlab "user kaun hai"; authorization ka matlab "is user ko ye resource allowed hai?" JWT signature valid hona authorization nahi.
+
+**Solution layers:** Trusted issuer, audience, expiry aur signature validate karo. Tenant membership trusted token claims ya server-side lookup se verify karo. Service method mein permission check; repository query mein `tenant_id` filter. Cache key mein bhi tenantId include karo.
+
+```java
+@PreAuthorize("@tenantAuthorizer.canRead(authentication, #tenantId)")
+public OrderDto getOrder(UUID tenantId, UUID orderId) {
+    return repository.findByTenantIdAndId(tenantId, orderId)
+        .map(this::map)
+        .orElseThrow(NotFoundException::new);
+}
+```
+
+**Interviewer twist:** `@PreAuthorize` proxy-based interception same-class self-invocation mein bypass ho sakti hai. Isliye DB-level scoping defense-in-depth rakho. RLS use karo toh DB session tenant context safely set/reset karna hoga.
+
+**English answer:** "I validate authentication separately from tenant authorization and scope every data-access path by tenant."
+
+## Q6. ThreadLocal se memory aur security context leak (Medium/Hard)
+**Socho** Tomcat thread pool ka Thread-1 tenant A ki request handle karta hai. Request khatam hui lekin `ThreadLocal.remove()` nahi hua. Same thread tenant B ke request ke liye reuse ho gaya. Ab stale context read ho sakta hai.
+
+**Kyun?** Pool thread request se bahut zyada der zinda rehta hai. ThreadLocalMap mein value retained reh sakti hai; weak reference key ka matlab value immediately free nahi hoti.
+
+```java
+TENANT.set(tenantId);
+try {
+    processRequest();
+} finally {
+    TENANT.remove();
+}
+```
+
+**Twist:** ThreadLocal mein huge request graph store karoge toh heap retention badhega. Diagnose with heap dump, retained paths aur thread-pool metrics. Explicit context passing kabhi-kabhi clearer hai.
+
+**English answer:** "Pooled threads outlive requests, so I always clear ThreadLocal state in finally to avoid retention and cross-request leakage."
