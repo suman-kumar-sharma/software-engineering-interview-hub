@@ -21,3 +21,13 @@ public class LfuDemo {
    Node(K k,V v){key=k;value=v;}
   }
   LfuCache(int c){if(c<0)throw new IllegalArgumentException();capacity=c;}
+  synchronized Optional<V> get(K k){
+   Node<K,V> n=entries.get(k);
+   if(n==null)return Optional.empty();
+   promote(n);return Optional.of(n.value);
+  }
+  synchronized void put(K k,V v){
+   Objects.requireNonNull(k);Objects.requireNonNull(v);
+   if(capacity==0)return;
+   Node<K,V> n=entries.get(k);
+   if(n!=null){n.value=v;promote(n);return;}
