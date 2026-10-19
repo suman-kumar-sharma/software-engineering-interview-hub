@@ -69,3 +69,7 @@ COMMIT;
 
 **Example:** JSON serializer har request mein 10 extra copies bana raha hai. Allocation rate badhega aur GC p99 ko hurt karega. **Approach:** baseline compare → JFR allocation stack → heap retention → targeted fix → load test. **Twist:** heap dump sensitive data rakh sakta hai; secure storage. **Complexity:** diagnostic overhead sampling par depend. **Interview:** “I distinguish retained heap growth from allocation churn before tuning GC.”
 
+
+## Q6 — Spring WebFlux mein blocking call kyun problem hai?
+
+**Maan lo** restaurant mein 4 waiters hain. Ek waiter kitchen mein khada hokar food ready hone ka wait kare toh baaki customers wait karenge. Reactor event-loop par blocking JDBC call bhi wahi karta hai. **Solution:** Nonblocking driver, ya bounded scheduler par blocking task, saath DB connection limit. **Dry run:** 1000 requests aur 20 DB connections: database capacity 20 active connections ke around bounded hai. **Complexity:** constant scheduling overhead; waiting requests memory lete hain. **Twist:** boundedElastic bhi unlimited nahi. **Interview:** “I isolate blocking work and enforce downstream concurrency limits.”
