@@ -36,3 +36,27 @@ WHERE entity_id=:id AND version < :newVersion;
 
 **Dry run:** B writes version 13, stale A tries 12; affected rows=0. **Complexity:** expected O(1) indexed lookup per event plus write. **Edges:** first insert race, gaps, duplicate replay, offsets after DB commit. **Follow-up:** Why is Kafka exactly-once not external payment exactly-once? **Interview:** “I fence stale business writes with conditional versions, independently of Kafka group ownership.” Source: https://kafka.apache.org/42/operations/consumer-rebalance-protocol/
 
+
+## Q3 — PostgreSQL write skew (Database, Hard)
+
+**Scenario:** Two doctors must leave at least one on call. Each sees the other available and updates only their own row. Under snapshot isolation both may commit, violating the cross-row invariant. Locking only updated rows does not protect the predicate.
+
+**Solution:** Lock a shared guard row, redesign the invariant, or use PostgreSQL SERIALIZABLE and retry the entire transaction on SQLSTATE 40001.
+
+~~~sql
+BEGIN ISOLATION LEVEL SERIALIZABLE;
+SELECT count(*) FROM doctors WHERE on_call;
+-- if count > 1: UPDATE doctors SET on_call=false WHERE id=:doctorId;
+COMMIT;
+~~~
+
+**Dry run:** Both read count=2; SERIALIZABLE detects a dangerous dependency and aborts at least one. **Complexity:** query cost depends on index; retries add variable cost. **Edges:** bounded retries/jitter; avoid external side effects inside retried transaction. **Follow-up:** Why isn't REPEATABLE READ enough? **Interview:** “Write skew needs predicate-level coordination or serializable execution.” Source: https://www.postgresql.org/docs/18/transaction-iso.html
+
+## Q4 — JWT signing-key rotation (Security, Hard)
+
+**Scenario:** K1 signs tokens expiring at 11:00. Issuer switches to K2 at 10:15. Deleting K1 immediately invalidates valid tokens.
+
+**Approach:** Publish K2 in trusted JWKS before using it; wait for verifier cache propagation; sign new tokens with kid=K2; retain K1 through old-token TTL plus skew. Validate signature, algorithm allowlist, issuer, audience, expiry, not-before and tenant authorization. Unknown kid triggers rate-limited JWKS refresh, never arbitrary URLs from token headers.
+
+**Dry run:** K1 tokens keep verifying while K2 tokens verify after refresh. **Complexity:** signature verification per request. **Edges:** compromised-key emergency revocation, clock skew, region lag. **Follow-up:** How to revoke one JWT early? **Interview:** “I overlap trusted verification keys and rotate signing only after propagation.” Source: https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+
