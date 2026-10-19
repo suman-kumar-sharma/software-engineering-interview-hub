@@ -38,3 +38,27 @@ WHERE entity_id=:id AND version < :ver;
 
 **Dry run:** B version 13 write karta hai; A version 12 try karega toh rowCount=0. **Complexity:** indexed conditional update. **Twist:** new row insert race aur missing events handle karo. **Interview mein:** “I fence stale external writes independently of Kafka's group ownership.”
 
+
+## Q3 — PostgreSQL mein write skew kya hota hai?
+
+**Socho** hospital rule hai: kam se kam ek doctor on-call rahega. A dekhta hai B duty par hai, B dekhta hai A duty par hai. Dono apni-apni row off kar dete hain. Alag rows update hui, phir bhi hospital mein koi duty par nahi! **Ab problem samjhi?** Rule poori set of rows par hai, ek row par nahi.
+
+**Approach:** Shared guard row lock karo ya SERIALIZABLE transaction use karo. PostgreSQL SQLSTATE 40001 de toh **poora transaction** dobara chalao, sirf failed UPDATE nahi.
+
+~~~sql
+BEGIN ISOLATION LEVEL SERIALIZABLE;
+SELECT count(*) FROM doctors WHERE on_call;
+-- count > 1 ho tab apni row off karo
+COMMIT;
+~~~
+
+**Dry run:** Dono count=2 dekhte hain, serializable conflict mein at least ek abort hoga. **Twist:** transaction ke andar external payment/email mat karo jo retry par duplicate ho. **Interview:** “I protect predicate-level invariants using serialization or a shared lock.”
+
+## Q4 — JWT signing key rotate karte waqt users logout kyun ho jaate hain?
+
+**Maan lo** K1 se issue hua token 11 baje expire hoga. Tumne 10:15 par K2 activate karke K1 public key delete kar di. Ab valid K1 token bhi verify nahi hoga. **Solution:** Pehle JWKS mein K2 publish karo, verifier caches refresh hone do, phir K2 se sign karo. K1 ko old tokens expire hone aur clock-skew buffer tak rakho.
+
+**Security checks:** issuer, audience, signature, allowed algorithm, expiry aur tenant permissions verify karo. Unknown kid par trusted JWKS ko controlled refresh karo; token ke header se arbitrary key URL trust mat karo.
+
+**Dry run:** Old K1 tokens expire hone tak chalte hain, naye K2 tokens bhi valid. **Twist:** emergency compromised key rotation planned rotation se different hai. **Interview:** “I overlap verification keys and rotate signing only after propagation.”
+
