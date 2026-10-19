@@ -73,3 +73,7 @@ COMMIT;
 ## Q6 — Spring WebFlux mein blocking call kyun problem hai?
 
 **Maan lo** restaurant mein 4 waiters hain. Ek waiter kitchen mein khada hokar food ready hone ka wait kare toh baaki customers wait karenge. Reactor event-loop par blocking JDBC call bhi wahi karta hai. **Solution:** Nonblocking driver, ya bounded scheduler par blocking task, saath DB connection limit. **Dry run:** 1000 requests aur 20 DB connections: database capacity 20 active connections ke around bounded hai. **Complexity:** constant scheduling overhead; waiting requests memory lete hain. **Twist:** boundedElastic bhi unlimited nahi. **Interview:** “I isolate blocking work and enforce downstream concurrency limits.”
+
+## Q7 — Negative numbers ke saath shortest subarray >= K
+
+**Socho** array [2,-1,2], K=3 hai. Simple sliding window negative -1 ki wajah se fail kar sakta hai. **Ab approach kaise derive karein?** Prefix sum P banao. Subarray i se j ka sum P[j]-P[i] hoga. Deque mein candidate prefix indices rakho jinke prefix sums increasing hain. Current j par front se qualifying indices hatao aur shortest length update karo; back se larger/equal prefixes hatao kyunki naye chhote prefix future ke liye better hain. **Dry run:** [2,-1,2] -> answer 3. **Complexity:** O(n) time, O(n) space; each index once push/pop. **Twist:** empty input, all negative, K<=0. **Interview:** “A monotonic deque over prefix sums handles negative numbers in linear time.”
