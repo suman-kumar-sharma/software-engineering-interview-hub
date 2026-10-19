@@ -79,3 +79,7 @@ jcmd <pid> GC.heap_info
 
 **Problem:** A blocking JDBC call runs on a Reactor event-loop and reduces throughput. **Approach:** Prefer nonblocking drivers, or isolate blocking work using boundedElastic with strict database concurrency limits. Backpressure does not create more DB connections. **Dry run:** 1000 requests, 20 DB connections: at most 20 can actively use the DB. **Complexity:** constant scheduling overhead plus queued tasks. **Edge cases:** timeouts, cancellation and queue saturation. **Interview:** “I keep event loops nonblocking and bound downstream work.”
 
+
+## Q8 — Rendezvous hashing for shard assignment
+
+For every key, compute a stable hash score against each shard; choose the highest-scoring shard. Adding a shard moves only keys for which the new shard wins. Unlike hash(key)%N, existing shard comparisons remain stable. **Dry run:** A scores 8, B scores 3 -> A; add C score 9 -> C. **Complexity:** O(number of shards) per lookup, O(1) auxiliary space. **Edges:** stable node IDs, deterministic tie-breaks, hot keys and weighted nodes. **Follow-up:** Compare with consistent-hash rings. **Interview:** “Highest-random-weight hashing minimizes remapping without a ring.”
