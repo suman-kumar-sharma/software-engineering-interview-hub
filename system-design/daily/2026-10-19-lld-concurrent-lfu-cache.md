@@ -37,3 +37,5 @@ public class LfuDemo {
     oldest.remove(victim);
     if(oldest.isEmpty())buckets.remove(minFrequency);
 
+    entries.computeIfPresent(victim,(key,node)->null);
+   }
