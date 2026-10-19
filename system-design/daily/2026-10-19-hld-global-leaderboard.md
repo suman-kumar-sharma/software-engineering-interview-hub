@@ -42,3 +42,7 @@ CREATE TABLE player_scores(
 POST /v1/score-events (internal server only); GET /v1/seasons/{season}/top?limit=100; GET /v1/seasons/{season}/players/{id}/rank; GET /v1/seasons/{season}/players/{id}/neighbors?radius=5.
 
 Redis ZSET supports ZREVRANGE top scores and ZREVRANK player rank. **Important:** blind ZINCRBY on replay double-counts. Prefer durable DB aggregate + version and atomic conditional Redis projection; rebuilding from authoritative rows is possible. Redis ZSET scores use floating point: integers above 2^53 cannot be represented exactly. Tie policy must be explicit; ZSET ordering is not automatically the business tie rule.
+
+## Scaling trade-offs
+
+A single Redis ZSET can become a hot write key. Sharded top-K works for global top-K, but exact arbitrary rank requires a global index or expensive merge. Choose one write region per season and expose read-replica freshness lag.
