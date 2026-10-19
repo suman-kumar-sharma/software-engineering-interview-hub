@@ -46,3 +46,7 @@ Redis ZSET supports ZREVRANGE top scores and ZREVRANK player rank. **Important:*
 ## Scaling trade-offs
 
 A single Redis ZSET can become a hot write key. Sharded top-K works for global top-K, but exact arbitrary rank requires a global index or expensive merge. Choose one write region per season and expose read-replica freshness lag.
+
+## Failure recovery and testing
+
+Consumer crash after DB commit: unique eventId prevents duplicate effect. Redis outage: keep durable ingest, degrade rank endpoint with freshness marker, rebuild projection later. DB outage: reject or durably buffer, never acknowledge undurable work. Season rollover: new season ID and late-event policy. Prevent cheating through server-side score validation and audit. Test duplicate replay, Redis flush, regional failover, equal-score ties, hot players, and peak ingest. Track lag, score divergence, memory and p99.
