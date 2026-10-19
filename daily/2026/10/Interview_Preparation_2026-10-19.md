@@ -60,3 +60,17 @@ COMMIT;
 
 **Dry run:** K1 tokens keep verifying while K2 tokens verify after refresh. **Complexity:** signature verification per request. **Edges:** compromised-key emergency revocation, clock skew, region lag. **Follow-up:** How to revoke one JWT early? **Interview:** “I overlap trusted verification keys and rotate signing only after propagation.” Source: https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
 
+
+## Q5 — JVM heap grows while CPU remains normal (JVM, Hard)
+
+**Scenario:** After deployment p99 latency climbs and old-generation occupancy grows, yet average CPU remains normal.
+
+**Approach:** Compare allocation rate, post-GC live set, GC pauses, thread count and safepoints against baseline. Capture bounded JFR profile, inspect allocation hot spots and retained objects. Distinguish a leak (live set increases after collections) from allocation churn (short-lived garbage). Check unbounded caches, forgotten listeners, ThreadLocal retention and ORM entity graphs.
+
+~~~bash
+jcmd <pid> JFR.start name=investigation settings=profile duration=120s filename=/tmp/app.jfr
+jcmd <pid> GC.heap_info
+~~~
+
+**Dry run:** JSON copies increase allocations 10x, GC pressure increases p99; remove copies and remeasure. **Complexity:** diagnostic overhead depends on sampling configuration. **Edges:** sensitive heap dumps, native memory vs heap, container memory limit. **Follow-up:** Why not force System.gc()? **Interview:** “I use JFR and live-set evidence before changing the GC algorithm.” Source: https://docs.oracle.com/en/java/javase/25/jfapi/flight-recorder-api-programmers-guide.pdf
+
