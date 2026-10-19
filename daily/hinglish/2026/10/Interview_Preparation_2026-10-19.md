@@ -62,3 +62,10 @@ COMMIT;
 
 **Dry run:** Old K1 tokens expire hone tak chalte hain, naye K2 tokens bhi valid. **Twist:** emergency compromised key rotation planned rotation se different hai. **Interview:** “I overlap verification keys and rotate signing only after propagation.”
 
+
+## Q5 — JVM memory badh rahi hai, CPU normal hai
+
+**Socho** deploy ke baad API p99 200ms se 2s ho gayi, lekin CPU 30% hai. CPU badhana sahi diagnosis nahi. **Kaise investigate karoge?** JFR se allocation profile, GC pause aur live heap compare karo. Har GC ke baad live set badhta rahe toh retained-object leak; temporary allocations badhein toh churn.
+
+**Example:** JSON serializer har request mein 10 extra copies bana raha hai. Allocation rate badhega aur GC p99 ko hurt karega. **Approach:** baseline compare → JFR allocation stack → heap retention → targeted fix → load test. **Twist:** heap dump sensitive data rakh sakta hai; secure storage. **Complexity:** diagnostic overhead sampling par depend. **Interview:** “I distinguish retained heap growth from allocation churn before tuning GC.”
+
