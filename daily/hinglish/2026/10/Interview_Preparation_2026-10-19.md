@@ -81,3 +81,7 @@ COMMIT;
 ## Q8 — Rendezvous hashing ko easy way mein samjho
 
 **Socho** customers ko cache servers A, B mein baantna hai. Simple hash%N mein naya server add karte hi bahut keys move hongi. Rendezvous hashing har customer aur har server pair ka stable score banata hai; highest score wala server choose hota hai. Naya C aaya toh sirf wahi customers move honge jinke liye C highest score jeetega. **Complexity:** O(N servers) per lookup. **Twist:** stable IDs, ties, hot keys. **Interview:** “Rendezvous hashing minimizes remapping during membership changes.”
+
+## Q9 — Kubernetes liveness vs readiness
+
+**Maan lo** database down hua aur sab pods ke liveness probes fail ho gaye. Kubernetes baar-baar healthy Java processes restart karega, recovery aur mushkil hogi. **Samjho:** Liveness = process chalne layak hai? Readiness = is pod ko traffic dena chahiye? Startup probe = app initialize hone ka time. DB outage par liveness generally fail mat karao. **Dry run:** DB unavailable, liveness true; readiness policy fallback ke hisaab se false ho sakti hai. **Twist:** zero ready endpoints. **Interview:** “I separate process health from traffic eligibility.”
