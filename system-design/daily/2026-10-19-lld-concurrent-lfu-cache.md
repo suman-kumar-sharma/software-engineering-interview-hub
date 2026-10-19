@@ -57,3 +57,14 @@ public class LfuDemo {
   }
   synchronized int size(){return entries.size();}
  }
+ public static void main(String[] args){
+  LfuCache<Integer,String> c=new LfuCache<>(2);
+  c.put(1,"A");c.put(2,"B");c.get(1);c.put(3,"C");
+  System.out.println(c.get(2)); // Optional.empty
+  System.out.println(c.get(1)); // Optional[A]
+  System.out.println(c.get(3)); // Optional[C]
+ }
+}
+~~~
+
+**Validation:** This Java 17-compatible design was compiled and executed in a local smoke test with expected output: Optional.empty, Optional[A], Optional[C]. Complexity: expected O(1) get/put, O(capacity) memory; a global synchronized lock serializes operations.
