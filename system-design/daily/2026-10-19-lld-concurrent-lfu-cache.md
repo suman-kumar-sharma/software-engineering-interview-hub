@@ -44,3 +44,16 @@ public class LfuDemo {
    buckets.computeIfAbsent(1,x->new LinkedHashSet<>()).add(k);
    minFrequency=1;
   }
+  private void promote(Node<K,V> n){
+   int old=n.frequency;
+   LinkedHashSet<K> group=buckets.get(old);
+   group.remove(n.key);
+   if(group.isEmpty()){
+    buckets.remove(old);
+    if(minFrequency==old)minFrequency=old+1;
+   }
+   n.frequency++;
+   buckets.computeIfAbsent(n.frequency,x->new LinkedHashSet<>()).add(n.key);
+  }
+  synchronized int size(){return entries.size();}
+ }
