@@ -85,3 +85,7 @@ COMMIT;
 ## Q9 — Kubernetes liveness vs readiness
 
 **Maan lo** database down hua aur sab pods ke liveness probes fail ho gaye. Kubernetes baar-baar healthy Java processes restart karega, recovery aur mushkil hogi. **Samjho:** Liveness = process chalne layak hai? Readiness = is pod ko traffic dena chahiye? Startup probe = app initialize hone ka time. DB outage par liveness generally fail mat karao. **Dry run:** DB unavailable, liveness true; readiness policy fallback ke hisaab se false ho sakti hai. **Twist:** zero ready endpoints. **Interview:** “I separate process health from traffic eligibility.”
+
+## System design walkthroughs
+
+[HLD — Gaming Leaderboard (Hinglish)](../../../system-design/hinglish/daily/2026-10-19-hld-global-leaderboard.md) · [LLD — Java LFU Cache](../../../system-design/daily/2026-10-19-lld-concurrent-lfu-cache.md).
