@@ -20,3 +20,25 @@ Game servers -> Auth Ingest API -> durable event log (Kafka)
 ~~~
 
 Kafka key keeps per-player event order. Stable eventId unique in DB prevents duplicate increments after replay. Acknowledge ingest only after durable acceptance. Redis is rebuildable from DB/events, not the sole durable source.
+
+## Data model, APIs and projection correctness
+
+~~~sql
+CREATE TABLE score_events(
+ event_id UUID PRIMARY KEY,
+ season_id BIGINT NOT NULL,
+ player_id BIGINT NOT NULL,
+ delta BIGINT NOT NULL
+);
+CREATE TABLE player_scores(
+ season_id BIGINT NOT NULL,
+ player_id BIGINT NOT NULL,
+ score BIGINT NOT NULL,
+ version BIGINT NOT NULL,
+ PRIMARY KEY(season_id,player_id)
+);
+~~~
+
+POST /v1/score-events (internal server only); GET /v1/seasons/{season}/top?limit=100; GET /v1/seasons/{season}/players/{id}/rank; GET /v1/seasons/{season}/players/{id}/neighbors?radius=5.
+
+Redis ZSET supports ZREVRANGE top scores and ZREVRANK player rank. **Important:** blind ZINCRBY on replay double-counts. Prefer durable DB aggregate + version and atomic conditional Redis projection; rebuilding from authoritative rows is possible. Redis ZSET scores use floating point: integers above 2^53 cannot be represented exactly. Tie policy must be explicit; ZSET ordering is not automatically the business tie rule.
