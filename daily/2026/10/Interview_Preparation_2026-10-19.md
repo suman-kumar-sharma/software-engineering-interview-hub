@@ -74,3 +74,5 @@ jcmd <pid> GC.heap_info
 
 **Dry run:** JSON copies increase allocations 10x, GC pressure increases p99; remove copies and remeasure. **Complexity:** diagnostic overhead depends on sampling configuration. **Edges:** sensitive heap dumps, native memory vs heap, container memory limit. **Follow-up:** Why not force System.gc()? **Interview:** “I use JFR and live-set evidence before changing the GC algorithm.” Source: https://docs.oracle.com/en/java/javase/25/jfapi/flight-recorder-api-programmers-guide.pdf
 
+
+<!-- Content continuation in progress -->
