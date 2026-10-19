@@ -87,3 +87,7 @@ For every key, compute a stable hash score against each shard; choose the highes
 ## Q9 — Kubernetes liveness vs readiness
 
 Liveness checks whether the process can recover without restart; readiness checks whether it should receive traffic; startup probe protects slow initialization. Do not restart healthy pods merely because a shared database is temporarily unavailable. **Dry run:** DB outage can make readiness false while liveness remains true. **Complexity:** O(1) lightweight checks. **Edges:** flapping, zero ready endpoints. **Interview:** “I separate process health from traffic eligibility.”
+
+## Q10 — Why a larger HikariCP pool can increase latency
+
+A database has finite CPU, I/O and lock capacity. Raising a pool from 20 to 200 may create more contention and slower queries. Measure active/idle/pending connections, acquisition time, SQL p99, lock waits, DB CPU and replica count. Little's Law gives approximate concurrency L=throughput*response-time, not a universal pool formula. **Dry run:** 200 operations/s * 0.1s DB hold time ~=20 active operations before burst allowance. **Complexity:** capacity-planning, not algorithmic. **Edges:** long transactions, virtual threads, per-pod pool multiplication. **Interview:** “I optimize query time and concurrency limits together rather than blindly adding connections.”
