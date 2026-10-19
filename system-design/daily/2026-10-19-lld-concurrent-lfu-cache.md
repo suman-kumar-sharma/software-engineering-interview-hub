@@ -31,3 +31,8 @@ public class LfuDemo {
    if(capacity==0)return;
    Node<K,V> n=entries.get(k);
    if(n!=null){n.value=v;promote(n);return;}
+   if(entries.size()==capacity){
+    LinkedHashSet<K> oldest=buckets.get(minFrequency);
+    K victim=oldest.iterator().next();
+    oldest.remove(victim);
+    if(oldest.isEmpty())buckets.remove(minFrequency);
