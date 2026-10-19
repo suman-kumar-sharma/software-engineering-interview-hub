@@ -36,3 +36,4 @@ public class LfuDemo {
     K victim=oldest.iterator().next();
     oldest.remove(victim);
     if(oldest.isEmpty())buckets.remove(minFrequency);
+
