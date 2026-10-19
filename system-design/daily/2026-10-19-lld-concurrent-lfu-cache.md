@@ -39,3 +39,8 @@ public class LfuDemo {
 
     entries.computeIfPresent(victim,(key,node)->null);
    }
+   Node<K,V> fresh=new Node<>(k,v);
+   entries.put(k,fresh);
+   buckets.computeIfAbsent(1,x->new LinkedHashSet<>()).add(k);
+   minFrequency=1;
+  }
