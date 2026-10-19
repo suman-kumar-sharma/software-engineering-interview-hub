@@ -77,3 +77,7 @@ COMMIT;
 ## Q7 — Negative numbers ke saath shortest subarray >= K
 
 **Socho** array [2,-1,2], K=3 hai. Simple sliding window negative -1 ki wajah se fail kar sakta hai. **Ab approach kaise derive karein?** Prefix sum P banao. Subarray i se j ka sum P[j]-P[i] hoga. Deque mein candidate prefix indices rakho jinke prefix sums increasing hain. Current j par front se qualifying indices hatao aur shortest length update karo; back se larger/equal prefixes hatao kyunki naye chhote prefix future ke liye better hain. **Dry run:** [2,-1,2] -> answer 3. **Complexity:** O(n) time, O(n) space; each index once push/pop. **Twist:** empty input, all negative, K<=0. **Interview:** “A monotonic deque over prefix sums handles negative numbers in linear time.”
+
+## Q8 — Rendezvous hashing ko easy way mein samjho
+
+**Socho** customers ko cache servers A, B mein baantna hai. Simple hash%N mein naya server add karte hi bahut keys move hongi. Rendezvous hashing har customer aur har server pair ka stable score banata hai; highest score wala server choose hota hai. Naya C aaya toh sirf wahi customers move honge jinke liye C highest score jeetega. **Complexity:** O(N servers) per lookup. **Twist:** stable IDs, ties, hot keys. **Interview:** “Rendezvous hashing minimizes remapping during membership changes.”
