@@ -83,3 +83,7 @@ jcmd <pid> GC.heap_info
 ## Q8 — Rendezvous hashing for shard assignment
 
 For every key, compute a stable hash score against each shard; choose the highest-scoring shard. Adding a shard moves only keys for which the new shard wins. Unlike hash(key)%N, existing shard comparisons remain stable. **Dry run:** A scores 8, B scores 3 -> A; add C score 9 -> C. **Complexity:** O(number of shards) per lookup, O(1) auxiliary space. **Edges:** stable node IDs, deterministic tie-breaks, hot keys and weighted nodes. **Follow-up:** Compare with consistent-hash rings. **Interview:** “Highest-random-weight hashing minimizes remapping without a ring.”
+
+## Q9 — Kubernetes liveness vs readiness
+
+Liveness checks whether the process can recover without restart; readiness checks whether it should receive traffic; startup probe protects slow initialization. Do not restart healthy pods merely because a shared database is temporarily unavailable. **Dry run:** DB outage can make readiness false while liveness remains true. **Complexity:** O(1) lightweight checks. **Edges:** flapping, zero ready endpoints. **Interview:** “I separate process health from traffic eligibility.”
