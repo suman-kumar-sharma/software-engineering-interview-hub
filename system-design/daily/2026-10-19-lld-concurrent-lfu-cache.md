@@ -68,3 +68,7 @@ public class LfuDemo {
 ~~~
 
 **Validation:** This Java 17-compatible design was compiled and executed in a local smoke test with expected output: Optional.empty, Optional[A], Optional[C]. Complexity: expected O(1) get/put, O(capacity) memory; a global synchronized lock serializes operations.
+
+## Edge cases, concurrency and interview defense
+
+Dry run capacity=2: put(1,A), put(2,B) -> frequency-1 order [1,2]. get(1) moves 1 to frequency 2. put(3,C) evicts key 2, resets minFrequency=1. Test capacity 0/1, ties, updates, null rejection, 32 concurrent callers and a sequential reference model. Frequency int can overflow after extreme use; production should use long or aging. Global monitor is simple but limits throughput; striped locking makes cross-frequency eviction much harder. No TTL, persistence or distributed coherence. **Spoken answer:** “A key map plus ordered frequency buckets provides expected constant-time LFU eviction, and a single monitor protects all cross-map invariants.”
