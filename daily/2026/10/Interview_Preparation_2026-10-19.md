@@ -91,3 +91,9 @@ Liveness checks whether the process can recover without restart; readiness check
 ## Q10 — Why a larger HikariCP pool can increase latency
 
 A database has finite CPU, I/O and lock capacity. Raising a pool from 20 to 200 may create more contention and slower queries. Measure active/idle/pending connections, acquisition time, SQL p99, lock waits, DB CPU and replica count. Little's Law gives approximate concurrency L=throughput*response-time, not a universal pool formula. **Dry run:** 200 operations/s * 0.1s DB hold time ~=20 active operations before burst allowance. **Complexity:** capacity-planning, not algorithmic. **Edges:** long transactions, virtual threads, per-pod pool multiplication. **Interview:** “I optimize query time and concurrency limits together rather than blindly adding connections.”
+
+## Today's comprehensive system design
+
+**HLD — Global Gaming Leaderboard:** [requirements, architecture, schema, scale, failure recovery, testing and trade-offs](../../../system-design/daily/2026-10-19-hld-global-leaderboard.md). Key decision: authoritative durable score database plus Redis rank projection; Kafka event IDs prevent replay errors.
+
+**LLD — Concurrent LFU Cache:** [complete Java 17 implementation, invariant, tests and complexity](../../../system-design/daily/2026-10-19-lld-concurrent-lfu-cache.md). Key decision: frequency buckets + ordered sets + single monitor for atomic state transitions.
