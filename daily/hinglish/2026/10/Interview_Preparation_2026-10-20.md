@@ -3,7 +3,7 @@
 
 **Target:** Product-company SDE2 / Senior Backend. Ratta nahi maarna: pehle situation samjho, phir root cause, phir solution derive karo. Code aur technical terms English mein hain, explanation natural Roman Hindi + English mein hai.
 
-Detailed designs: [HLD — Audit Event Platform](../../../system-design/hinglish/daily/2026-10-20-hld-audit-event-platform.md) · [LLD — Token Bucket](../../../system-design/hinglish/daily/2026-10-20-lld-token-bucket-rate-limiter.md)
+Detailed designs: [HLD — Audit Event Platform](https://github.com/suman-kumar-sharma/software-engineering-interview-hub/blob/main/system-design/hinglish/daily/2026-10-20-hld-audit-event-platform.md) · [LLD — Token Bucket](https://github.com/suman-kumar-sharma/software-engineering-interview-hub/blob/main/system-design/hinglish/daily/2026-10-20-lld-token-bucket-rate-limiter.md)
 
 ## Q1. CompletableFuture timeout hua — kya HTTP call bhi ruk gayi?
 
@@ -175,7 +175,7 @@ Socho har tenant ko average 10 requests/second allow karni hain, par short burst
 
 **Invariant:** tokens 0 se neeche ya capacity se upar nahi. Refill, check aur deduction ek atomic critical section mein hone chahiye, warna do threads same last token consume kar sakte hain.
 
-Java 17 implementation, deterministic tests, complexity aur distributed deployment caveats is [detailed Hinglish LLD](../../../system-design/hinglish/daily/2026-10-20-lld-token-bucket-rate-limiter.md) mein hain. Elapsed time ke liye System.nanoTime() use karo, wall clock nahi. Local limiter ek JVM tak limited hai; global quota ke liye shared atomic store ya gateway-level limiter chahiye.
+Java 17 implementation, deterministic tests, complexity aur distributed deployment caveats is [detailed Hinglish LLD](https://github.com/suman-kumar-sharma/software-engineering-interview-hub/blob/main/system-design/hinglish/daily/2026-10-20-lld-token-bucket-rate-limiter.md) mein hain. Elapsed time ke liye System.nanoTime() use karo, wall clock nahi. Local limiter ek JVM tak limited hai; global quota ke liye shared atomic store ya gateway-level limiter chahiye.
 
 ## Aaj ke engineering updates — 20 October 2026
 
