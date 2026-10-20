@@ -99,7 +99,7 @@ public class TokenBucketTest {
         TokenBucket single = new TokenBucket(1, 0.1, fixedClock::get);
         int callers = 100;
         ExecutorService pool = Executors.newFixedThreadPool(20);
-        CountDownLatch ready = new CountDownLatch(callers);
+        CountDownLatch ready = new CountDownLatch(20);
         CountDownLatch start = new CountDownLatch(1);
         CountDownLatch done = new CountDownLatch(callers);
         AtomicInteger winners = new AtomicInteger();
