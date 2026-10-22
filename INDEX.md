@@ -2,6 +2,7 @@
 
 | Date | English | Hinglish |
 | --- | --- | --- |
+| 2026-10-22 | [English](daily/2026/10/Interview_Preparation_2026-10-22.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-22.md) |
 | 2026-10-19 | [English](daily/2026/10/Interview_Preparation_2026-10-19.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-19.md) |
 | 2026-10-17 | [English](daily/2026/10/Interview_Preparation_2026-10-17.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-17.md) |
 | 2026-10-16 | [English](daily/2026/10/Interview_Preparation_2026-10-16.md) | [Hinglish](daily/hinglish/2026/10/Interview_Preparation_2026-10-16.md) |
@@ -19,3 +20,6 @@ Both editions keep identical filenames in separate folders. Hinglish lessons exp
 ## 19 October system design
 - [HLD: Global Gaming Leaderboard](system-design/daily/2026-10-19-hld-global-leaderboard.md) | [Hinglish](system-design/hinglish/daily/2026-10-19-hld-global-leaderboard.md)
 - [LLD: Concurrent LFU Cache](system-design/daily/2026-10-19-lld-concurrent-lfu-cache.md)
+
+## 22 October system design
+- [HLD: Reliable Webhook Delivery](system-design/daily/2026-10-22-hld-reliable-webhook-delivery.md) | [Hinglish](system-design/hinglish/daily/2026-10-22-hld-reliable-webhook-delivery.md)
