@@ -13,6 +13,7 @@ Topics rotate through concurrency/JMM, virtual threads, CompletableFuture, Kafka
 
 | Date | Topic | Reference |
 |---|---|---|
+| 2026-10-24 | CompletableFuture orchestration: mandatory payment, optional shipping and timeouts | [English](english/2026/10/Backend_Practice_2026-10-24.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-24.md) |
 | 2026-10-21 | Java 21 virtual threads: bound database concurrency, not threads | [English](english/2026/10/Backend_Practice_2026-10-21.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-21.md) |
 | 2026-10-18 | Kafka concurrent workers: safe offset commits and rebalances | [English](english/2026/10/Backend_Practice_2026-10-18.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-18.md) |
 | 2026-10-17 | Retry storms: deadlines, jitter, bulkheads and retry budgets | [English](english/2026/10/Backend_Practice_2026-10-17.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-17.md) |
