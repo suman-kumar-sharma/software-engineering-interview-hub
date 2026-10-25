@@ -11,6 +11,7 @@ Topics rotate through concurrency/JMM, virtual threads, CompletableFuture, Kafka
 
 ## Session index
 
+| 2026-10-25 | Java concurrency/JMM: volatile visibility vs atomic increments; AtomicLong vs LongAdder | [English](english/2026/10/Backend_Practice_2026-10-25.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-25.md) |
 | Date | Topic | Reference |
 |---|---|---|
 | 2026-10-24 | CompletableFuture orchestration: mandatory payment, optional shipping and timeouts | [English](english/2026/10/Backend_Practice_2026-10-24.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-24.md) |
