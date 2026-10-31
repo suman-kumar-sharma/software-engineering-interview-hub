@@ -11,6 +11,7 @@ Topics rotate through Java concurrency/JMM, virtual threads and resource limits,
 
 ## Session index
 
+| 2026-10-31 | JVM diagnostics: JFR, thread dumps and diagnosing remote I/O while holding a DB connection | [English](english/2026/10/Backend_Practice_2026-10-31.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-31.md) |
 | Date | Topic | Reference |
 |---|---|---|
 | 2026-10-28 | Kafka reliability: transactional outbox, Debezium CDC and idempotent consumers | [English](english/2026/10/Backend_Practice_2026-10-28.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-28.md) |
