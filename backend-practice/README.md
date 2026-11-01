@@ -4,16 +4,17 @@ Self-contained sessions with questions, complete worked answers and explanations
 
 ## Layout
 
-- `english/YYYY/MM/Backend_Practice_YYYY-MM-DD.md`: comprehensive English solution.
-- `hinglish/YYYY/MM/Backend_Practice_YYYY-MM-DD.md`: equally comprehensive Roman-script Hinglish explanation.
+- english/YYYY/MM/Backend_Practice_YYYY-MM-DD.md: comprehensive English solution.
+- hinglish/YYYY/MM/Backend_Practice_YYYY-MM-DD.md: equally comprehensive Roman-script Hinglish explanation.
 
 Topics rotate through Java concurrency/JMM, virtual threads and resource limits, CompletableFuture, Kafka reliability, JVM internals/diagnostics and resilient distributed systems. Sessions include constraints, reasoning, code/design, dry runs, failure cases, production trade-offs, interview answers and authoritative sources.
 
 ## Session index
 
-| 2026-10-31 | JVM diagnostics: JFR, thread dumps and diagnosing remote I/O while holding a DB connection | [English](english/2026/10/Backend_Practice_2026-10-31.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-31.md) |
 | Date | Topic | Reference |
 |---|---|---|
+| 2026-11-01 | Resilient caching: cache stampede control with single-flight, stale-while-revalidate, TTL jitter and bounded refresh | [English](english/2026/11/Backend_Practice_2026-11-01.md) · [Hinglish](hinglish/2026/11/Backend_Practice_2026-11-01.md) |
+| 2026-10-31 | JVM diagnostics: JFR, thread dumps and diagnosing remote I/O while holding a DB connection | [English](english/2026/10/Backend_Practice_2026-10-31.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-31.md) |
 | 2026-10-28 | Kafka reliability: transactional outbox, Debezium CDC and idempotent consumers | [English](english/2026/10/Backend_Practice_2026-10-28.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-28.md) |
 | 2026-10-25 | Java concurrency/JMM: volatile visibility vs atomic increments; AtomicLong vs LongAdder | [English](english/2026/10/Backend_Practice_2026-10-25.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-25.md) |
 | 2026-10-24 | CompletableFuture orchestration: mandatory payment, optional shipping and timeouts | [English](english/2026/10/Backend_Practice_2026-10-24.md) · [Hinglish](hinglish/2026/10/Backend_Practice_2026-10-24.md) |
